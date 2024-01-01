@@ -21,8 +21,7 @@ int main()
 	cout << "Please enter your loan duration: ";
 	cin >> loanDuration;
 
-	float loanCost;
-	loanCost = loanAmount * interestPercent;
+	float loanCost = loanAmount * interestPercent;
 	
 
 	float monthlyPayment = loanAmount / loanDuration;
@@ -32,46 +31,45 @@ int main()
 	cout << "Would you like to add an additional payment? (yes/no):";
 	cin >> userInput;
 
-	float newloanValue;
-	float monthlyinterestCost;
+	float monthlyInterestCost;  
+	float totalInterestCost;
 
-	float additionalPayment;
-	if (userInput == "yes") 
-	{
+	if (userInput == "yes") {
+		float additionalPayment;
 		cout << "Enter additional payment amount: ";
 		cin >> additionalPayment;
-		newloanValue = loanAmount - additionalPayment;
-		monthlyinterestCost = monthlyinterestCalc * newloanValue;
-
+		float newLoanValue = loanAmount - additionalPayment;
+		monthlyInterestCost = monthlyinterestCalc * newLoanValue;
 	}
-	else if (userInput == "no")
-	{
-		monthlyinterestCost = monthlyinterestCalc * loanAmount;
-			
+	else if (userInput == "no") {
+		monthlyInterestCost = monthlyinterestCalc * loanAmount;
 	}
 	else {
 		cout << "Invalid input. Please type (yes/no) only." << endl;
-		cin.clear();
-		cin.ignore(999, '\n');
+		return 1;
 	}
 
+	cout << "Your monthly interest payment is: $" << monthlyInterestCost << endl;
+	totalInterestCost = monthlyInterestCost * loanDuration;
+	cout << "Your total cost for interest at the end of " << loanDuration << " months is $" << totalInterestCost << "." << endl;
 	cout << endl;
 
-	cout << "Your monthly interest payment is: $" << monthlyinterestCost << endl;
+	cout << "-REMAINING MONTHLY INTEREST BALANCE ESTIMATE-" << endl;
+	int remainingMonths = loanDuration; // Start from loanDuration
+	while (remainingMonths > 0) {
+		float remainingInterestBalance = monthlyInterestCost * remainingMonths; // Calculate remaining interest balance
+		cout << "MONTHS LEFT: " << remainingMonths << " | BALANCE: $" << remainingInterestBalance << "." << endl;
+		remainingMonths--;
+	}
+
+	
 
 
-	float totalinterestCost;
-	totalinterestCost = monthlyinterestCost * loanDuration;
-	cout << "Your total cost for interest at the end of " << loanDuration << " months is $" << totalinterestCost << "." << endl;
-	cout << endl;
 
-	cout << "-MONTHLY INTEREST BALANCE ESTIMATE-" << endl;
-	// value for interest balance does not decriment. need to fix
-		for (int x = loanDuration; x > 0; x--)
-		{
-			
-			cout << "Your remaining interest remaining balance for month " << x << "  is $" << totalinterestCost - monthlyinterestCost << "." << endl;
-		}
+	//for (int x = loanDuration; x > 0; x--)
+	//{
+	//		cout << "Your remaining interest remaining balance for month " << x << " is $" << totalinterestCost - monthlyinterestCost << "." << endl;
+	//	}
 
 
 
