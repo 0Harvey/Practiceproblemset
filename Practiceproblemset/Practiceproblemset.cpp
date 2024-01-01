@@ -39,10 +39,11 @@ int main()
 		cout << "Enter additional payment amount: ";
 		cin >> additionalPayment;
 		float newLoanValue = loanAmount - additionalPayment;
-		monthlyInterestCost = monthlyinterestCalc * newLoanValue;
+		monthlyInterestCost = monthlyInterestCalc * newLoanValue;
+		cout << "Loan balance (Excludes interest): " << newLoanValue<<endl;
 	}
 	else if (userInput == "no") {
-		monthlyInterestCost = monthlyinterestCalc * loanAmount;
+		monthlyInterestCost = monthlyInterestCalc * loanAmount;
 	}
 	else {
 		cout << "Invalid input. Please type (yes/no) only." << endl;
