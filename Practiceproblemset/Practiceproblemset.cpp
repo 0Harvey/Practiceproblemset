@@ -15,7 +15,7 @@ int main()
 	cout << "What is your interest rate: ";
 	cin >> interestRate;
 	float interestPercent = interestRate * 0.01;
-	float monthlyinterestCalc = interestPercent / 12;
+	float monthlyInterestCalc = interestPercent / 12;
 
 	float loanDuration;
 	cout << "Please enter your loan duration: ";
@@ -25,6 +25,7 @@ int main()
 	
 
 	float monthlyPayment = loanAmount / loanDuration;
+	
 	cout << "Your monthly payment before interest is: $" << monthlyPayment << endl;
 
 	string userInput;
@@ -56,7 +57,8 @@ int main()
 	cout << endl;
 
 	cout << "-REMAINING MONTHLY INTEREST BALANCE ESTIMATE-" << endl;
-	int remainingMonths = loanDuration; // Start from loanDuration
+	cout << "MONTHS LEFT: "<< loanDuration <<" | BALANCE : $" <<totalInterestCost<<endl;
+	int remainingMonths = loanDuration-1; // Start from loanDuration
 	while (remainingMonths > 0) {
 		float remainingInterestBalance = monthlyInterestCost * remainingMonths; // Calculate remaining interest balance
 		cout << "MONTHS LEFT: " << remainingMonths << " | BALANCE: $" << remainingInterestBalance << "." << endl;
